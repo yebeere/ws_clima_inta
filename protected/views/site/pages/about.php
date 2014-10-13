@@ -24,5 +24,5 @@ $this->breadcrumbs=array(
     <img src="./images/logo_inta.png" height="80" width="80" align="middle">
 </div></p>
 <?php  // echo CHtml::image(Yii::app()->request->baseUrl.'/images/fai.jpg','Facultad de Informática',array('width'=>100,'height'=>100,'position'=>'absolute','text-align'=>'center','margin'=>'0 auto'));
-     // echo CHtml::image(Yii::app()->request->baseUrl.'/images/uncesp.jpg','Universidad Nacional del Comahue',array('width'=>100,'height'=>100,'margin'=>'auto'));
+      // echo CHtml::image(Yii::app()->request->baseUrl.'/images/uncesp.jpg','Universidad Nacional del Comahue',array('width'=>100,'height'=>100,'margin'=>'auto'));
 ?>
