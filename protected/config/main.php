@@ -34,6 +34,25 @@ return array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
 		),
+            
+                'urlManager'=>array(
+			'urlFormat'=>'path',
+			'rules'=>array(
+				'emas/<idEmas:\d+>/<Descripcion:.*?>'=>'emas/view',
+                		//'<api/<:\w+>/<action:\w+>/<id:\w+>'=>'<controller>/<action>',
+				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
+                                 // REST patterns
+                                array('api/listaEmas', 'pattern'=>'api/<model:\w+>', 'verb'=>'GET'),
+                                //array('api/datosActuales', 'pattern'=>'api/<model:\w+>/<codigoEma:\w+>', 'verb'=>'GET'),
+                                array('<controller>/datosActuales', 'pattern' => '<controller:\w+>/<id:\d+>', 'verb' => 'GET'),
+                                array('api/update', 'pattern'=>'api/<model:\w+>/<IdNoticia:\d+>', 'verb'=>'PUT'),  // Update
+                                array('api/delete', 'pattern'=>'api/<model:\w+>/<IdNoticia:\d+>', 'verb'=>'DELETE'),
+                                array('api/create', 'pattern'=>'api/<model:\w+>', 'verb'=>'POST'), // Create
+                                '<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
+
+			),
+		),
+            
 		// uncomment the following to enable URLs in path-format
 		
 		'db'=>array(
@@ -42,7 +61,7 @@ return array(
 		// uncomment the following to use a MySQL database
 		
 		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=ws_clima_inta',
+			'connectionString' => 'mysql:host=localhost;dbname=cuentagotas',
 			'emulatePrepare' => true,
 			'username' => 'root',
 			'password' => '',

@@ -9,9 +9,10 @@ $this->pageTitle=Yii::app()->name;
 
 <p>Este servicio brinda los últimos datos de las Estaciones Meteorológicas Automáticas (EMA),
     el sistema se basa en la adquisición de datos de estaciones Meteorológicas Davis. Los datos se 
-    actualizan cada 10 minutos. El sistema es abierto y para acceder se debe convocar con la siguiente instrucción:</p>.
-<p><b><?php echo  Yii::app()->request->hostInfo; echo Yii::app()->getHomeUrl(); ?>?r=api/datosActuales&ema=INTACHANA</b></p>
-
+    actualizan cada 10 minutos. Este WebService REST tiene implementado el intercambio de datos
+    en formato JSON y JSONP. No posee clave para realizar las consultas y para acceder se debe convocar con la siguiente instrucción:</p>.
+<p><b><?php echo "En JSON :    ". Yii::app()->request->hostInfo; echo Yii::app()->getHomeUrl(); ?>/api/datosActuales/ema/INTACHANA</b></p>
+<p><b><?php echo "En JSONP:    ". Yii::app()->request->hostInfo; echo Yii::app()->getHomeUrl(); ?>/api/datosActuales/ema/INTACHANA?callback=datos</b></p>
 
 <p>Las estaciones disponibles son:</p>
 <?php $this->widget('zii.widgets.grid.CGridView', array(
@@ -26,7 +27,7 @@ $this->pageTitle=Yii::app()->name;
                 array(
                         'name'=>'Código/Link',
                         'type'=>'raw',
-                         'value'=>'CHtml::link($data->codigoEma,array("api/datosActuales","ema"=>$data->codigoEma))'
+                         'value'=>'CHtml::link($data->codigoEma,array("api/datosActuales/ema/".$data->codigoEma))'
                 ), 
 		//'altitudEma',
 		//'urlEma',
@@ -47,4 +48,9 @@ $this->pageTitle=Yii::app()->name;
 //			'class'=>'CButtonColumn',
 //		),
 	),
-)); ?>
+));
+?>
+<p>Para obtener el listado de Estaciones Meteorológicas Disponibles se debe realizar la siguiente consulta:</p>.
+<p><b><?php echo "En JSON :   ". Yii::app()->request->hostInfo; echo Yii::app()->getHomeUrl(); ?>/api/listaEmas</b></p>
+<p><b><?php echo "En JSONP:   ". Yii::app()->request->hostInfo; echo Yii::app()->getHomeUrl(); ?>/api/listaEmas?callback=datos </b></p>
+

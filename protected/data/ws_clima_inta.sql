@@ -2,7 +2,7 @@
 SQLyog Ultimate v9.01 
 MySQL - 5.6.12-log : Database - ws_clima_inta
 *********************************************************************
-*/
+*/
 
 /*!40101 SET NAMES utf8 */;
 
@@ -11,9 +11,9 @@ MySQL - 5.6.12-log : Database - ws_clima_inta
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-CREATE DATABASE /*!32312 IF NOT EXISTS*/`ws_clima_inta` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci */;
+/*CREATE DATABASE /*!32312 IF NOT EXISTS*//*`ws_clima_inta` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci */;
 
-USE `ws_clima_inta`;
+USE `cuentagotas`;
 
 /*Table structure for table `emas` */
 

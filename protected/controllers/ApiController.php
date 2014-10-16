@@ -1,21 +1,10 @@
 <?php
 /**
- * ApiController class file
- * @author Joachim Werner <joachim.werner@diggin-data.de>  
- */
-/**
- * ApiController 
- * 
- * @uses Controller
- * @author Joachim Werner <joachim.werner@diggin-data.de>
- * @author 
- * @see http://www.gen-x-design.com/archives/making-restful-requests-in-php/
- * @license (tbd)
+
  */
 class ApiController extends Controller
 {
 public function leerEma($emaUrl){
-//         $url = 'http://slow.example.com';
           if ($stream = fopen($emaUrl, 'r')){
             stream_set_timeout($stream, 20);
             $page = stream_get_contents($stream);
@@ -46,7 +35,19 @@ public function leerEma($emaUrl){
         
 }
 
-
+public function ActionListaEmas(){
+    //$estaciones=Emas::model()->findAll();
+     $rawData = Yii::app()->db->createCommand('SELECT codigoEma, nombreEma FROM emas')->queryAll();
+     header('Content-type: application/json; charset=utf-8');
+     $json=json_encode($rawData);
+     echo isset($_GET['callback'])
+        ? "{$_GET['callback']}($json)"
+        : $json;
+     $this->layout=FALSE;
+     
+//      echo $json;
+//     $this->layout=FALSE;
+}
 public function parseaLineaTabla($lineas,$nroFila){
     
       $datosEma = preg_split("/[\s]+/", ltrim($lineas[$nroFila-2]));
@@ -55,6 +56,7 @@ public function parseaLineaTabla($lineas,$nroFila){
 }
     
  public function actionDatosActuales($ema) {
+        
         $respuesta = array();
         //se busca la EMA en base
         $estacion= Emas::model()->find('codigoEma=:ema', array(':ema' => $ema));
@@ -95,11 +97,13 @@ public function parseaLineaTabla($lineas,$nroFila){
                }
               // $respuesta['datos'] =$pagina; 
             }
-        
+
         header('Content-type: application/json; charset=utf-8');
         $json=json_encode($respuesta);
         //header('Content-Length: '. sizeof($json));
-        echo $json;
+        echo isset($_GET['callback'])
+            ? "{$_GET['callback']}($json)"
+            : $json;
         $this->layout=FALSE;
         //exit;
     }
